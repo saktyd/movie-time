@@ -1,13 +1,15 @@
-import React from 'react';
+import React, {Suspense, lazy} from 'react';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
-import Main from './pages/Main'
+const Main = lazy(() => import('./pages/Main'));
 
 const App = () => {
   return (
     <Router>
+      <Suspense fallback={<div style={{height: '100%', width: '100%', backgroundColor: 'black'}}>Loading...</div>}>
         <Switch>
-          <Route path="/:type?" component={Main} />
+          <Route exact path="/:type?" component={Main} />
         </Switch>
+      </Suspense>
       </Router>
   );
 }

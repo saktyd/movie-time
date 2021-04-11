@@ -1,4 +1,4 @@
-import {request, apiUrl} from '../../request'
+import {request, apiUrl, chooseUrl} from '../../request'
 
 export const  fetchMoviesBegin = () => ({
   type: 'FETCH_MOVIES_BEGIN',
@@ -14,11 +14,11 @@ export const  fetchMoviesError = (data) => ({
   payload: data
 });
 
-export const fetchMovies = () => {
+export const fetchMovies = (type) => {
   return async (dispatch) => {
     dispatch(fetchMoviesBegin());
     await request
-      .get(apiUrl.fetchActionMovies)
+      .get(chooseUrl(type))
       .then((res) => {
         dispatch(fetchMoviesSuccess(res.data));
       })

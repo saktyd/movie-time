@@ -17,7 +17,7 @@ ShotGrid.Card = (({children, ...rest}) => (
 ))
 
 ShotGrid.CardHeader = (({poster_path}) => (
-    <img loading="lazy" src={BASE_IMAGE_URL+poster_path} className="shotgrid__card--header" alt=""/>
+    <img loading={'eager'} src={BASE_IMAGE_URL+poster_path} className="shotgrid__card--header" alt=""/>
 ))
 
 ShotGrid.CardBodyHidden = (({overview, ...rest}) => (

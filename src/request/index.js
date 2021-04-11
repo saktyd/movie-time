@@ -12,6 +12,40 @@ export const apiUrl = {
     fetchDocumentaries: `/discover/movie?api_key=${API_KEY}&with_genres=99`,
 }
 
+export const chooseUrl = (key) => {
+    let url;
+    switch (key) {
+        case 'now-playing':
+            url = apiUrl.fetchNowPlaying
+            break;
+        case 'all':
+            url = apiUrl.fetchTrending
+            break;
+        case 'top-rated':
+            url = apiUrl.fetchTopRated
+            break;
+        case 'actions':
+            url = apiUrl.fetchActionMovies
+            break;
+        case 'comedy':
+            url = apiUrl.fetchComedyMovies
+            break;
+        case 'horror':
+            url = apiUrl.fetchHorrorMovies
+            break;
+        case 'romance':
+            url = apiUrl.fetchRomanceMovies
+            break;
+        case 'documentaries':
+            url = apiUrl.fetchDocumentaries
+            break;
+        default:
+            url = ''
+            break;
+    }
+    return url
+}
+
 export const request = axios.create({
     baseURL: 'https://api.themoviedb.org/3'
 })
