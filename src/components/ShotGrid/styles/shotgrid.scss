@@ -1,0 +1,113 @@
+.shotgrid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    grid-gap: 36px;
+    padding-top: 32px;
+    padding-bottom: 32px;
+    
+    &__card {
+        border-radius: 5px;
+        overflow: hidden;
+        position: relative;
+        &:hover {
+            transform: scale(1.03);
+        }
+        
+        &--header {
+            width: 100%;
+            height: 300px;
+        }
+
+        &--hidden, &--body {
+            padding: 10px;
+            position: absolute;
+            width: 100%;
+
+            .title {
+                flex: 1;
+                line-height: 1.1;
+                color: white;
+                padding-right: 10px;
+                white-space: nowrap;
+                overflow: hidden;
+                text-overflow: ellipsis;
+            }
+
+            .score {
+                padding: 0px 5px;
+                border-radius: 5px;
+                font-size: 12px;
+                font-weight: bold;
+                text-align: center;
+                line-height: 1.5;
+                color: #5ac3f6;
+                border: 1px solid #5ac3f6;
+                height: fit-content;
+            }
+        }
+
+        &--hidden {
+            padding: 20px 10px !important;
+            top: 0 ;
+            height: 100%;
+            background-color: #000000b5;
+            display: flex;
+            flex-direction: column;
+
+            .top-section {
+                display: flex;
+                flex-direction: row;
+                width: 100%;
+            }
+
+            .mid-section {
+                flex: 1;
+                margin: 20px 0;
+                font-size: 14px;
+                color: white;
+                overflow: hidden;
+                word-break: normal;
+                line-height: 21px;
+                display: -webkit-box;
+                -webkit-line-clamp: 8;
+                -webkit-box-orient: vertical;
+            }
+
+            .bottom-section {
+                display: flex;
+                flex-direction: row;
+
+                button {
+                    padding: 8px;
+                    font-size: 12px;
+                    font-weight: bold;
+                    width: fit-content;
+                    border-radius: 5px;
+                    &:hover {
+                        transform: scale(1.03);
+                    }
+                }
+
+                &__trailer {
+                    color: white;
+                    background-color: #5ac3f6;
+                    margin-right: 10px;
+                }
+
+                &__info {
+                    border: 1px solid white !important;
+                    background-color: transparent;
+                    color: white;
+                }
+               
+            }
+        }
+
+        &--body {
+            flex-direction: row;
+            display: flex;
+            bottom: 0;
+            background-color: #00000052;
+        }
+    }
+}

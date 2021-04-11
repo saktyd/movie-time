@@ -1,0 +1,21 @@
+.nav {
+    display: flex;
+    flex-direction: row;
+    padding-top: 32px;
+
+    button {
+      padding: 10px 15px;
+      color: white;
+      background: none;
+      border-radius: 8px;
+      border: none;
+      &:hover {
+        color: #dadada !important;
+      }
+    }
+    
+    &__active {
+      font-weight: bold;
+      background: #868686 !important;
+    }
+}
