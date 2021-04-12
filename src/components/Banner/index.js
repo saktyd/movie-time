@@ -1,13 +1,15 @@
+/* eslint-disable react-hooks/rules-of-hooks */
 /* eslint-disable react-hooks/exhaustive-deps */
 import React, {useEffect} from 'react'
 import {useDispatch, useSelector} from 'react-redux'
 import { BASE_IMAGE_URL } from '../../constans/api'
 import {fetchMoviesBanner} from '../../redux/actions/movies'
+import {useHistory} from 'react-router-dom'
 import './styles/banner.scss'
 
 const Banner = () => {
     const dispatch = useDispatch()
-
+    
     const moviesBanner = useSelector(
         state => state.movies.moviesBanner,
     );  
@@ -28,6 +30,8 @@ const Banner = () => {
 }
 
 Banner.Content = (({content}) => {
+    const history = useHistory()
+    
     const truncate = (str, n) => {
         return str?.length > n ? str.substr(0, n - 1) + '...' : str
     }
@@ -37,7 +41,7 @@ Banner.Content = (({content}) => {
             <h1 className="banner__content--title">{content?.title || content?.name || content?.original_name}</h1>
             <div className="banner__content--buttons">
                 <button className="button__primaryblue mr10">Play Trailer</button>
-                <button className="button__borderwhite mr10">View Info</button>
+                <button className="button__borderwhite mr10" onClick={() => history.push({pathname: '/info-movie', search: `?id=${content.id}`})}>View Info</button>
             </div>
             <h1 className="banner__content--description">{truncate(content?.overview, 150)}</h1>
             <h1 className="banner__content--score">{content?.vote_average}</h1>

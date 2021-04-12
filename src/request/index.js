@@ -1,5 +1,5 @@
 import axios from 'axios';
-import {API_KEY} from '../constans/api'
+import {API_KEY, BASE_URL} from '../constans/api'
 
 export const apiUrl = {
     fetchNowPlaying: `/movie/now_playing?api_key=${API_KEY}&language=en-us`,
@@ -55,5 +55,5 @@ export const chooseUrl = (key) => {
 }
 
 export const request = axios.create({
-    baseURL: 'https://api.themoviedb.org/3'
+    baseURL: BASE_URL
 })

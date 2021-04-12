@@ -10,7 +10,7 @@ const initialState = {
   errorMovies: false,
   detailMovie: null,
   isLoadingDetailMovie: false,
-  errorMovie: false
+  errorDetailMovie: false,
 };
 
 const moviesReducer = (state = initialState, action) => {
@@ -86,6 +86,32 @@ const moviesReducer = (state = initialState, action) => {
         ...state,
         isLoadingMovies: false,
         errorMovies: action.payload,
+      };
+    }
+
+    // FETCH DETAIL MOVIE
+    case 'FETCH_DETAIL_MOVIE_BEGIN': {
+      return {
+        ...state,
+        isLoadingDetailMovie: true,
+        errorDetailMovie: false,
+        detailMovie: null
+      };
+    }
+
+    case 'FETCH_DETAIL_MOVIE_SUCCESS': {
+      return {
+        ...state,
+        isLoadingDetailMovie: false,
+        detailMovie: action.payload,
+      };
+    }
+
+    case 'FETCH_DETAIL_MOVIE_ERROR': {
+      return {
+        ...state,
+        isLoadingDetailMovie: false,
+        errorDetailMovie: action.payload,
       };
     }
     

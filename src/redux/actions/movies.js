@@ -1,4 +1,5 @@
 import {request, chooseUrl} from '../../request'
+import {BASE_URL, API_KEY} from '../../constans/api'
 
 // FETCH MOVIES
 export const  fetchMoviesBegin = () => ({
@@ -66,5 +67,34 @@ export const fetchMoviesBanner = () => {
       .catch((err) => {
         dispatch(fetchMoviesBannerError(err.response?.data));
       });
+  };
+};
+
+// FETCH MOVIES BANNER
+export const  fetchDetailMovieBegin = () => ({
+  type: 'FETCH_DETAIL_MOVIE_BEGIN',
+});
+
+export const  fetchDetailMovieSuccess = (data) => ({
+  type: 'FETCH_DETAIL_MOVIE_SUCCESS',
+  payload: data
+});
+
+export const  fetchDetailMovieError = (data) => ({
+  type: 'FETCH_DETAIL_MOVIE_ERROR',
+  payload: data
+});
+
+export const fetchDetailMovie = (id) => {
+  return async (dispatch) => {
+    dispatch(fetchDetailMovieBegin());
+    await request
+      .get(BASE_URL+`/movie/${id}?api_key=${API_KEY}`)
+      .then((res) => {
+        dispatch(fetchDetailMovieSuccess(res.data));
+      })
+      .catch((err) => {
+        dispatch(fetchDetailMovieError(err.response?.data))
+      })
   };
 };

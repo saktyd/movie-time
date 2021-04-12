@@ -4,6 +4,7 @@ import NavbarContainer from '../../containers/Navbar'
 import ShowGridContainer from '../../containers/ShotGrid'
 import BannerContainer from '../../containers/Banner'
 import FilterContainer from '../../containers/Filter'
+import DetailMovieContainer from '../../containers/DetailMovie'
 import './styles/main.scss'
 import {useSelector, useDispatch} from 'react-redux'
 import {useParams, useHistory} from "react-router-dom";
@@ -35,7 +36,6 @@ const Main = () => {
             dispatch(fetchMovies(found?.paramsType || 'all', currentPage + 1))
         } else {
             dispatch(fetchMovies('search', 1, queryValue, queryYearValue))
-            
             setSearchActive(true)
         }
     }, [])
@@ -46,7 +46,9 @@ const Main = () => {
             const date = moment(`${queryYearValue}-01-01T10:00:00`).toDate()
             setDateText(date)
         }
-        setSearchKeyword(queryValue)
+        if (queryValue) {
+            setSearchKeyword(queryValue)
+        }
     }, [queryValue, queryYearValue])
 
     useEffect(() => {
@@ -78,21 +80,23 @@ const Main = () => {
     }
 
     window.onscroll = () => {
-        const offset=window.scrollY;
-        const { offsetHeight, scrollTop, scrollHeight } = window.document.documentElement
-        
-        if (offset > 50 ) {
-            setScrolled(true);
-        } else {
-            setScrolled(false);
-        }
+        if (paramsType !== 'info-movie') {
+            const offset=window.scrollY;
+            const { offsetHeight, scrollTop, scrollHeight } = window.document.documentElement
+            
+            if (offset > 50 ) {
+                setScrolled(true);
+            } else {
+                setScrolled(false);
+            }
 
-        if (offsetHeight + scrollTop === scrollHeight) {
-            if (!isLoadingLoadMoreMovies && !isLoadingMovies && currentPage < totalPages) {
-                if (paramsType !== 'search') {
-                    dispatch(fetchMovies(paramsType || 'all', currentPage + 1))
-                } else {
-                    dispatch(fetchMovies('search', currentPage + 1, queryValue, startDate))
+            if (offsetHeight + scrollTop === scrollHeight) {
+                if (!isLoadingLoadMoreMovies && !isLoadingMovies && currentPage < totalPages) {
+                    if (paramsType !== 'search') {
+                        dispatch(fetchMovies(paramsType || 'all', currentPage + 1))
+                    } else {
+                        dispatch(fetchMovies('search', currentPage + 1, queryValue, startDate))
+                    }
                 }
             }
         }
@@ -107,13 +111,21 @@ const Main = () => {
                 searchActive={searchActive}
                 setSearchActive={setSearchActive}
             />
-            {paramsType !== 'search' ? (
+            { paramsType === 'info-movie' ? (
+                <DetailMovieContainer/>
+            ) : (
                 <>
-                    <BannerContainer/>
-                    <NavbarContainer tabs={tabs} paramsType={paramsType} activeTab={activeTab} setActiveTab={setActiveTab} />
+                    {paramsType === 'search' ? (
+                        <FilterContainer setStartDate={setStartDate} dateText={dateText} setDateText={setDateText} />
+                    ) : (
+                        <>
+                            <BannerContainer/>
+                            <NavbarContainer tabs={tabs} paramsType={paramsType} activeTab={activeTab} setActiveTab={setActiveTab} />
+                        </>
+                    )}
+                    <ShowGridContainer/>
                 </>
-            ) : (<FilterContainer setStartDate={setStartDate} dateText={dateText} setDateText={setDateText} />)}
-            <ShowGridContainer/>
+            )}
         </>
     )
 }
