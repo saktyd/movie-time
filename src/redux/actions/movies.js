@@ -19,14 +19,14 @@ export const  fetchMoviesError = (data) => ({
   payload: data
 });
 
-export const fetchMovies = (type, page, keyword) => {
+export const fetchMovies = (type, page, keyword, year) => {
   return async (dispatch) => {
     if (page > 1) {
       dispatch(fetchMoviesLoadMoreBegin());
     } else {
       dispatch(fetchMoviesBegin());
     }
-    const urlSearch = type === 'search' ?`&query=${keyword}&page=${page}` : `&page=${page}`;
+    const urlSearch = type === 'search' ?`&query=${keyword}&page=${page}&year=${year}` : `&page=${page}`;
     await request
       .get(chooseUrl(type)+urlSearch)
       .then((res) => {
