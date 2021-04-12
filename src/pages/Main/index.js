@@ -1,3 +1,6 @@
+/* eslint-disable react-hooks/rules-of-hooks */
+/* eslint-disable react-hooks/exhaustive-deps */
+
 import React, {useState, useEffect} from 'react'
 import HeaderContainer from '../../containers/Header'
 import NavbarContainer from '../../containers/Navbar'
@@ -11,7 +14,6 @@ import {useSelector, useDispatch} from 'react-redux'
 import {useParams, useHistory} from "react-router-dom";
 import {fetchMovies} from '../../redux/actions/movies'
 import moment from 'moment'
-import Youtube from 'react-youtube'
 
 const Main = () => {
     const params = useParams()

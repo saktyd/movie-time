@@ -1,3 +1,6 @@
+/* eslint-disable react-hooks/rules-of-hooks */
+/* eslint-disable react-hooks/exhaustive-deps */
+
 import React, {useEffect} from 'react'
 import DetailMovie from '../components/DetailMovie'
 import {useDispatch, useSelector} from 'react-redux'

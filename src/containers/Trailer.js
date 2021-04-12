@@ -5,7 +5,7 @@ import '../components/Trailer/style/trailer.scss'
 import {setTrailerYoutubeKey} from '../redux/actions/movies'
 
 
-const TrailerContainer = ({}) => {
+const TrailerContainer = () => {
     const dispatch = useDispatch()
     const youtubeKey = useSelector(state => state.movies.trailerYoutubeKey)
 

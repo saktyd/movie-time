@@ -4,8 +4,8 @@ import Filter from '../components/Filter'
 const FilterContainer = ({setStartDate, setDateText, ...rest}) => {
     useEffect(() => {
         return () => {
-            setDateText()
-            setStartDate('')
+            setDateText();
+            setStartDate('');
         }
     }, [])
     return (

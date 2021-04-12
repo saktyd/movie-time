@@ -1,3 +1,6 @@
+/* eslint-disable react-hooks/rules-of-hooks */
+/* eslint-disable react-hooks/exhaustive-deps */
+
 import React, {useEffect} from 'react'
 import './styles/filter.scss'
 import FilterIcon from '@material-ui/icons/FilterList'
