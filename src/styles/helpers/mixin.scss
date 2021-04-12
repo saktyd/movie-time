@@ -1,0 +1,9 @@
+@mixin button($bgColor: #5ac3f6, $color:#ffffff, $fontsize: 12px) {
+    color: $color;
+    font-size: $fontsize;
+    background-color: $bgColor;
+    padding: 8px;
+    font-weight: bold;
+    width: fit-content;
+    border-radius: 5px;
+}

@@ -10,6 +10,8 @@ export const apiUrl = {
     fetchHorrorMovies: `/discover/movie?api_key=${API_KEY}&with_genres=27`,
     fetchRomanceMovies: `/discover/movie?api_key=${API_KEY}&with_genres=10749`,
     fetchDocumentaries: `/discover/movie?api_key=${API_KEY}&with_genres=99`,
+    fetchSuggest: `/search/keyword?api_key=${API_KEY}`,
+    fetchSearchMovie: `/search/movie?api_key=${API_KEY}`,
 }
 
 export const chooseUrl = (key) => {
@@ -38,6 +40,12 @@ export const chooseUrl = (key) => {
             break;
         case 'documentaries':
             url = apiUrl.fetchDocumentaries
+            break;
+        case 'suggest':
+            url = apiUrl.fetchSuggest
+            break;
+        case 'search':
+            url = apiUrl.fetchSearchMovie
             break;
         default:
             url = ''

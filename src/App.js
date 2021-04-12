@@ -5,7 +5,7 @@ const Main = lazy(() => import('./pages/Main'));
 const App = () => {
   return (
     <Router>
-      <Suspense fallback={<div style={{height: '100%', width: '100%', backgroundColor: 'black'}}>Loading...</div>}>
+      <Suspense fallback={<div style={{height: '100%', width: '100%', backgroundColor: 'black' }}></div>}>
         <Switch>
           <Route exact path="/:type?" component={Main} />
         </Switch>

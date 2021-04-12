@@ -1,0 +1,17 @@
+.button {
+    &__primaryblue {
+        @include button(#5ac3f6, white, 12px);
+        &:hover {
+            transform: scale(1.03);
+        }
+    }
+
+    &__borderwhite {
+        @include button(transparent, white, 12px);
+        border: 1px solid white !important;
+        &:hover {
+            transform: scale(1.03);
+        }
+    }
+
+}

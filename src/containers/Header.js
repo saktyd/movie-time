@@ -1,11 +1,11 @@
 import React from 'react'
 import Header from '../components/Header'
 
-const HeaderContainer = () => {
+const HeaderContainer = ({scrolled, ...rest}) => {
     return (
-        <Header>
+        <Header scrolled={scrolled}>
             <Header.Title/>
-            <Header.Search/>
+            <Header.Search {...rest}/>
         </Header>
     )
 }

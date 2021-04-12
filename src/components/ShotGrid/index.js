@@ -29,10 +29,10 @@ ShotGrid.CardBodyHidden = (({overview, ...rest}) => (
           {overview}
         </p>
         <div className="bottom-section">
-            <button className="bottom-section__trailer">
+            <button className="button__primaryblue mr10">
                 Play Trailer
             </button>
-            <button className="bottom-section__info">
+            <button className="button__borderwhite">
                 View Info
             </button>
         </div>

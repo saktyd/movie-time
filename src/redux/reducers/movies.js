@@ -3,7 +3,7 @@ const initialState = {
   isLoadingBanner: false,
   errorBanner: false,
   movies: null,
-  currentPage: 1,
+  currentPage: 0,
   totalPages: 0,
   isLoadingMovies: false,
   isLoadingLoadMoreMovies: false,
@@ -49,13 +49,35 @@ const moviesReducer = (state = initialState, action) => {
       };
     }
 
+    case 'FETCH_MOVIES_LOADMORE_BEGIN': {
+      return {
+        ...state,
+        isLoadingLoadMoreMovies: true,
+        errorBanner: false,
+      };
+    }
+
     case 'FETCH_MOVIES_SUCCESS': {
+      let movies = null;
+      const { results, page, total_pages} = action.payload;
+      if (page > 1) {
+        let filter = []
+        state.movies.map((item) => {
+          filter = results.filter((el) => el.id !== item.id);
+          return null
+        });
+        movies = state.movies.concat(filter);
+      } else {
+        movies = results?.length > 0 ? results : state.movies;
+      }
+
       return {
         ...state,
         isLoadingMovies: false,
-        movies: action.payload.results,
-        totalPages: action.payload.total_pages,
-        currentPage: action.payload.page,
+        isLoadingLoadMoreMovies: false,
+        movies: movies,
+        totalPages: total_pages,
+        currentPage: page,
       };
     }
 
