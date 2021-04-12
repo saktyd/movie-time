@@ -5,11 +5,13 @@ import ShowGridContainer from '../../containers/ShotGrid'
 import BannerContainer from '../../containers/Banner'
 import FilterContainer from '../../containers/Filter'
 import DetailMovieContainer from '../../containers/DetailMovie'
+import TrailerContainer from '../../containers/Trailer'
 import './styles/main.scss'
 import {useSelector, useDispatch} from 'react-redux'
 import {useParams, useHistory} from "react-router-dom";
 import {fetchMovies} from '../../redux/actions/movies'
 import moment from 'moment'
+import Youtube from 'react-youtube'
 
 const Main = () => {
     const params = useParams()
@@ -103,7 +105,8 @@ const Main = () => {
     }
 
     return (
-        <>
+        <>  
+            <TrailerContainer></TrailerContainer>
             <HeaderContainer 
                 scrolled={scrolled} selectSuggest={selectSuggest} 
                 suggest={suggest} searchKeyword={searchKeyword} 
@@ -126,6 +129,7 @@ const Main = () => {
                     <ShowGridContainer/>
                 </>
             )}
+            
         </>
     )
 }

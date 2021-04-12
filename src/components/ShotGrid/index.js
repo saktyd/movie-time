@@ -22,7 +22,7 @@ ShotGrid.CardHeader = (({poster_path}) => (
     <img loading={'eager'} src={BASE_IMAGE_URL+poster_path} className="shotgrid__card--header" alt=""/>
 ))
 
-ShotGrid.CardBodyHidden = (({overview, id, ...rest}) => {
+ShotGrid.CardBodyHidden = (({overview, id, handleClickTrailer, name, ...rest}) => {
     const history = useHistory()
     return (
         <div className="shotgrid__card--hidden">
@@ -33,7 +33,7 @@ ShotGrid.CardBodyHidden = (({overview, id, ...rest}) => {
             {overview}
             </p>
             <div className="bottom-section">
-                <button className="button__primaryblue mr10">
+                <button className="button__primaryblue mr10" onClick={() => handleClickTrailer(id)}>
                     Play Trailer
                 </button>
                 <button className="button__borderwhite" onClick={() => history.push({pathname: '/info-movie', search: `?id=${id}`})}>

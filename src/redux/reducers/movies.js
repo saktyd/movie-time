@@ -11,10 +11,18 @@ const initialState = {
   detailMovie: null,
   isLoadingDetailMovie: false,
   errorDetailMovie: false,
+  trailerYoutubeKey: '' 
 };
 
 const moviesReducer = (state = initialState, action) => {
   switch (action.type) {
+    // SET TRAILER YOUTUBE KEY
+    case 'SET_TRAILER_YOUTUBE_KEY': {
+      return {
+        ...state,
+        trailerYoutubeKey: action.payload,
+      };
+    }
     // FETCH MOVIES BANNER
     case 'FETCH_MOVIES_BANNER_BEGIN': {
       return {

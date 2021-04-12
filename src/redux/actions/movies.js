@@ -1,6 +1,28 @@
 import {request, chooseUrl} from '../../request'
 import {BASE_URL, API_KEY} from '../../constans/api'
 
+// SET_TRAILER_YOUTUBE_KEY
+export const  setTrailerYoutubeKey = (data) => ({
+  type: 'SET_TRAILER_YOUTUBE_KEY',
+  payload: data
+});
+
+export const fetchTailerMovie = (id) => {
+  return async (dispatch) => {
+    await request
+      .get(BASE_URL+`/movie/${id}/videos?api_key=`+API_KEY)
+      .then((res) => {
+        if (res.data.results?.length > 0) {
+          const key = res.data.results[0].key
+          dispatch(setTrailerYoutubeKey(key))
+        }
+      })
+      .catch((err) => {
+        console.log(err)
+      });
+  };
+};
+
 // FETCH MOVIES
 export const  fetchMoviesBegin = () => ({
   type: 'FETCH_MOVIES_BEGIN',

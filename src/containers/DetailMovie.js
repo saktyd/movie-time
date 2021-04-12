@@ -10,8 +10,6 @@ const DetailMovieContainer = () => {
 
     const detailMovie = useSelector(state => state.movies.detailMovie)
 
-    console.log('detailMovie',detailMovie)
-
     useEffect(() => {
         distpatch(fetchDetailMovie(queryId))
         return () => {
